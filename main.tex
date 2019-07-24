@@ -1,0 +1,269 @@
+\documentclass[14pt]{extreport}%
+\usepackage[Conny]{fncychap}
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage[usenames, dvipsnames]{color}
+\usepackage{comment}
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2.2cm, right=2.2cm]%
+{geometry}
+
+
+\usepackage{titlesec}
+\titleformat{\section}
+{\color{Maroon}\normalfont\Large\bfseries}
+{\color{Maroon}\thesection}{1em}{}[{\titlerule[0.8pt]}]
+
+\renewcommand{\chaptername}{Unit}
+
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+% Python environment
+\lstnewenvironment{python}[1][]{\pythonstyle 
+\lstset{#1}}{}
+% Python for external files
+\newcommand\pythonexternal[2][]{{\pythonstyle
+\lstinputlisting[#1]{#2}}}
+% Python for inline
+\newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
+
+
+\titlespacing*{\chapter}{0pt}{-50pt}{40pt}
+
+\begin{document}
+
+% TITLE
+% number following chapter should be (UNIT # - 1)
+\setcounter{chapter}{0}
+\chapter{\Large{\textbf{Lesson 1}: Intro to Java}}
+
+% formatting parameter, don't change
+\vspace{-10pt}
+
+\section*{LEARNING OBJECTIVES}
+\begin{itemize}
+    \item Variables and Data Types \item Control Flow \item Scope \item Arrays
+    
+\end{itemize}
+
+\section*{KEY CONCEPTS}
+\subsection*{Variables and Data Types}
+\begin{itemize}
+    \item Statically Typed Language
+    \item int, float, boolean, char 
+\end{itemize}
+
+\subsection*{Control Flow }
+\begin{itemize}
+    \item conditionals and boolean logic 
+    \item loops
+\end{itemize}
+
+\subsection*{Scope}
+\begin{itemize}
+    \item block scope
+    
+
+    
+\end{itemize}
+\subsection*{Arrays }
+\begin{itemize}
+    \item Arrays
+    \item ArrayLists
+\end{itemize}
+
+
+    
+\section*{Variables}     
+\subsection*{Data Types in Java}
+There are 8 primitive data types in Java, for now we will focus on 4:
+\begin{enumerate}
+    \item \textbf{int}
+    \begin{enumerate}
+        \item short for integer, which is any positive or negative whole number such as 8, 25, 0, -16, 100
+    \end{enumerate}
+    \item \textbf{float} 
+    \begin{enumerate}
+        \item floats are numbers with decimal points such as 4.3, -6.89, 15.0
+    \end{enumerate}
+    \item \textbf{boolean} 
+    \begin{enumerate}
+        \item booleans have only two possible values: \textbf{true} or \textbf{false}
+    \end{enumerate}
+    
+    \item \textbf{char}
+    \begin{enumerate}
+        \item char is short for character are includes any character on your keyboard like "a", "x", "@". A bunch of characters together surrounded by quotation marks forms a \textbf{String} (another Data Type) such as "HelloWorld123"
+    \end{enumerate}
+\end{enumerate}
+
+
+\subsection*{Declaring Variables in Java}
+here are a couple examples of creating and assigning values to variables:
+\begin{lstlisting}
+//setting a variable equal to an integer
+int myInt = 36;
+
+//setting a variable equal to a float
+float myFloat = 84.987;
+
+//setting a variable equal to a boolean, unlike python true and false aren't capitalized
+boolean myBool = true;
+
+//setting a variable equal to a String
+String myWord = "hello";
+\end{lstlisting}
+
+There are a few things going on here, first, notice the syntax; when declaring a variable the first thing you must tell the computer is what \textit{type} the variable is going to be, then you name the variable, and then you set it equal to the value you want it to refer to, and then finally you end the statement with a semicolon \textbf{;} (every statement must have a semicolon at the end).
+
+\begin{lstlisting}
+int x = "hello";
+String y = 45;
+\end{lstlisting}
+
+Types are very important and strict in Java, the above code will not run because the declared type of the variable (on the left side) does not match the type of the value assigned on the right side
+
+\begin{lstlisting}
+int x = 58;
+x = 4;
+x = 78;
+x = 34;
+System.out.println(x);
+\end{lstlisting}
+Once you declare the type and value of a variable, you can change the value as many times as you want and you can omit the type declaration for each new assignement after the first one because the computer already knows what the type of the variable is. Also notice the syntax for printing the variable x at the end. What value do you think this will print?
+
+\begin{lstlisting}
+int x = 58;
+x = "hello";
+\end{lstlisting}
+
+The code above will result in an error. Java is what is called a \textbf{Statically Typed Language} which means that the type of a variable cannot be changed after it is first declared. The code gives an error because we initially declared x to equal an int and then later tried to change the value of x to a String.
+\section*{Boolean Logic }
+Now that we know how to create and store data in variables, we want to know how we can actually use them in meaningful ways. This is where \textit{contol flow} comes in.
+
+We have already seen that booleans can have only two values: \textit{true} or \textit{false}. When we combine these values with boolean operators like \textbf{and} / \textbf{or}, we get a single overall boolean value. \\* \\*
+\textbf{\textit{Boolean operators syntax}}: 
+\begin{lstlisting}
+true && true // and operator
+true || false // or operator
+!true // not operator
+\end{lstlisting}
+
+\subsection*{Problem}
+\begin{lstlisting}
+boolean A = true;
+boolean B = true;
+boolean C = false;
+boolean D = true;
+boolean E = false;
+int outside_temp = 32;
+int freezing_point = 32;
+int body_temp = 97;
+int coffee_temp = 120;
+
+System.out.println(A && B);  //Q1
+System.out.println((A || E) && D);  //Q2
+System.out.println(A || B || D || C);  //Q3
+System.out.println(A && B && D && C);  //Q4
+System.out.println(outside_temp <= freezing_point);  //Q5
+System.out.println(( coffee_temp > body_temp ) && E);  //Q6
+\end{lstlisting}
+
+\subsection*{Solution}
+\textbf{Q1. True}. (A and B) is the same as (True and True). \\*
+\textbf{Q2. True}. (A or E) evaluates to True, so we are left with (True or True). \\*
+\textbf{Q3. True}. We only need one of these to be True for the whole logical statement to be True. \\*
+\textbf{Q4. False}. We need all of these to be True for the whole logical statement to be True. Since C is false, the result is False. \\*
+\textbf{Q5. True}. Remember that comparison operators also give a Boolean value
+once they have been evaluated. 32 is less than or equal to 32. \\*
+\textbf{Q6. False}. While coffee temp is greater than body temp, E is false. (True
+and False) evaluates to False. \\* \\* \\*
+
+\section*{Conditionals }
+
+
+\section*{ACTIVITY \#1} 
+\subsection*{Problem}
+Description of problem.
+\subsection*{Solution}
+Description of solution.\\
+\begin{python}
+#put python code here
+
+\end{python}
+
+\section*{ACTIVITY \#2} 
+\subsection*{Problem}
+Description of problem.
+
+\subsection*{Solution}
+Description of solution.\\
+\begin{python}
+#put python code here
+\end{python}
+
+\section*{ACTIVITY \#3} 
+\subsection*{Problem}
+Description of problem.
+\subsection*{Solution}
+Description of solution. \\
+\begin{python}
+#put python code here
+\end{python}
+
+\section*{ADDITIONAL PRACTICE} 
+\subsection*{Problem}
+Description of problem.
+\subsection*{Solution}
+Description of solution. \\
+\begin{python}
+#put python code here
+\end{python}
+
+\section*{MORE ADVANCED PRACTICE} 
+\subsection*{Problem}
+Description of problem.
+\subsection*{Solution}
+Description of solution. \\
+\begin{python}
+#put python code here
+\end{python}
+
+\section*{RESOURCES}
+\begin{itemize}
+    \item Resource 1
+    \item Resource 2
+\end{itemize}
+
+\section*{CHECK-IN}
+\begin{enumerate}
+    \item Question 1
+    \item Question 2
+\end{enumerate}
+
+\section*{HOMEWORK}
+
+\end{document}
