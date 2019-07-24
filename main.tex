@@ -203,6 +203,119 @@ once they have been evaluated. 32 is less than or equal to 32. \\*
 and False) evaluates to False. \\* \\* \\*
 
 \section*{Conditionals }
+Now that we now how to evaluate boolean statements, we can use these statements to control on the computer moves through a program and to tell it to only execute certain blocks of code if some condition is met.
+
+\subsection*{if statements}
+Lets say we have a program that allows us to change how many cookies we have. We then want to increase that number by 5 and then tell us how
+many we will have at the end.
+
+\begin{lstlisting}
+int cookies = 50;
+cookies += 5;
+System.out.println("Total cookies: " + Integer.toString(cookies));
+\end{lstlisting} 
+But what if they already have enough cookies? We don't have to give them
+any more so that we have more to share with others. 10 sounds like it'll be
+enough. So, if they have more than 10 cookies, we won't give them anymore.
+Its pretty easy to translate this idea to code:
+\begin{lstlisting}
+int cookies = 50;
+
+if (cookies <= 10){
+  cookies += 5;
+}
+
+System.out.println("Total cookies: " + Integer.toString(cookies));
+\end{lstlisting}
+Here, we used an if statement to determine whether or not to give more cookies. Notice the syntax:
+\begin{lstlisting}
+if ( condition ){
+   code to be executed when condition is met;
+}
+\end{lstlisting}
+The keyword \textbf{if} is followed by parentheses containing a condition (that is either true or false), if that condition is true, then the code inside of the if statement is executed. Notice how we don't need a semicolon at the end of the \textit{if (condition) } statement, instead, we use a curly bracket to denote the start of the if block and another curly bracket to denote the end of the if statement. Unlike in python, the whitespace indentation is unnecessary, the curly brackets tell the computer what is inside the if block, but for the sake of readability, it is good practice to still indent whatever is inside the if block.
+
+\subsection*{else if statements}
+Our cookie program only takes one condition into account: if they have more
+than 10 cookies. Another case is if they have too many, say more than 1000?
+If this is true, well take away 100 so there's more for everyone!
+
+\begin{lstlisting}
+int cookies = 5000;
+
+if (cookies <= 10){
+  cookies += 5;
+}
+
+else if (cookies >= 1000){
+  cookies -= 100;
+}
+
+System.out.println("Total cookies: " + Integer.toString(cookies));
+\end{lstlisting}{}
+Reading this code
+block in English, it sounds like: if the number of cookies is less than or equal
+to 10, increment by 10. Otherwise, if the number of cookies is greater than or equal
+to 1000, subtract 100. Always print the total number of cookies.
+
+\subsection*{else statements}
+Finally, you may have noticed that our program does not account for all cases. We only look at times when they have under 10 or over 1000 cookies. Fortunately, Python (and many other programming languages) have a catch-all sort of statement, called else. This line will execute if and only if none of the above conditionals are evaluated to True. Lets say that in our program, we want to give 10 cookies if we execute the else block.
+
+\begin{lstlisting}
+int cookies = 100;
+
+if (cookies <= 10){
+  cookies += 5;
+}
+
+else if (cookies >= 1000){
+  cookies -= 100;
+}
+
+else{
+  cookies += 10;
+}
+
+System.out.println("Total cookies: " + Integer.toString(cookies));
+\end{lstlisting}{}
+
+So, if the top two conditions fail, we reach the else statement. Reading this code block in English, it sounds like: if the number of cookies is less than or equal to 10, increment by 10. Else, if the number of cookies is greater than or equal to 1000, subtract 100. Else, add 10. Always print the total number of cookies.
+
+\subsection*{structuring if and else if blocks}
+It is important to be able to distinguish between the following code blocks:
+\begin{lstlisting}
+int cookies = 1100;
+
+if (cookies >= 10){
+  cookies += 5;
+}
+
+else if (cookies >= 1000){
+  cookies -= 100;
+}
+
+System.out.println("Total cookies: " + Integer.toString(cookies));
+\end{lstlisting}{}
+
+\begin{lstlisting}
+int cookies = 1100;
+
+if (cookies >= 10){
+  cookies += 5;
+}
+
+if (cookies >= 1000){
+  cookies -= 100;
+}
+
+System.out.println("Total cookies: " + Integer.toString(cookies));
+\end{lstlisting}{}
+
+Lets assume that cookies = 1100. In the top block of code, both the if and else if conditions are met, but only the first executes because the else if is reached only if the first if statement fails. At the end of the top block of code, cookies = 1105. However, in the bottom code block, both
+conditions are again met, and both mathematical operations (plus 5, minus
+100) are executed because the if statements are read in order. At the end of
+the top block of code, cookies = 1005. The computer doesn't know
+that the two if statements are related.
 
 
 \section*{ACTIVITY \#1} 
